@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Word Guess Game</title>
+  </head>
+  <body>
+    <header>
+      <h1>Guess What Letter I'm Thinking Of</h1>
+      <h2 id="directions">Please type your guess.</h2>
+    </header>
+    <div>
+      <p id="player-wins"></p>
+      <p id="player-losses"></p>
+      <p id="guesses-left"></p>
+      <p id="total-guesses"></p>
+      <p id="player-guesses"></p>
+    </div>
+
+    <script type="text/javascript">
+      //Create variables
+      var alphabet = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
+      ];
+      //Create variables to hold number of wins,losses, guesses, & guesses left
+      var wins = 0;
+      var losses = 0;
+      var guessed = 0;
+      var turnsLeft = 0;
+
+      //Create variables to hold references to the places in the html where we want to hold things
+      var directionsText = document.getElementById("directions");
+      var playerChoice = document.getElementById("player-guesses");
+      var playerWins = document.getElementById("player-wins");
+      var playerLosses = document.getElementById("player-losses");
+      var guessesLeft = document.getElementById("guesses-left");
+      var guessedSoFar = document.getElementById("total-guesses");
+
+      for (var i = 0; i < alphabet.length; i++) {}
+
+      // This function runs when a key is pressed by player
+      document.onkeyup = function(event) {
+        var playerGuess = event.key;
+        var computerGuess =
+          alphabet[Math.floor(Math.random() * alphabet.length)];
+        console.log(playerGuess);
+        console.log(computerGuess);
+
+        if (playerGuess === computerGuess) {
+          playerWins = true;
+          wins++;
+          alert("You chose: " + playerGuess);
+          // if playerWins = (var i = 0; i + ??? )
+        } else if (playerGuess >= computerGuess) {
+          alert("Wrong. You lose!");
+          losses++;
+          console.log(playerWins);
+        }
+      };
+      //add wins and losses to get guessedSoFar
+
+      //create a total to determine guesses left
+
+      //Hide directions
+      directionsText.textContent = "";
+
+      //Display the player and computer guesses, wins, and losses.
+      playerLosses.textContent = "Losses: " + losses;
+      playerWins.textContent = "Wins: " + wins;
+      guessedSoFar.textContent = "Your Guesses So Far: " + guessed;
+      guessesLeft.textContent = "Guesses Left: " + turnsLeft;
+      // playerGuess.textContent = "You Guessed: " + playerGuess;
+
+      // Creating variables to hold the number of
+
+      // Function to run when the user presses a key.
+
+      //      Essentially, the app randomly picks a letter, and the user has to guess which letter the app chose. Put the following text on your page:
+      // Wins: (# of times the user has guessed the letter correctly)
+      // Losses: (# of times the user has failed to guess the letter correctly after exhausting all guesses)
+      // Guesses Left: (# of guesses left. This will update)
+      // Your Guesses So Far: (the specific letters that the user typed. Display these until the user either wins or loses.)
+      // When the player wins, increase the Wins counter and start the game over again (without refreshing the page).
+      // When the player loses, increase the Losses counter and restart the game without a page refresh (just like when the user wins).
+    </script>
+  </body>
+</html>
