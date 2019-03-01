@@ -12,11 +12,11 @@
       <h2 id="directions">Please type your guess.</h2>
     </header>
     <div>
-      <p id="player-wins"></p>
-      <p id="player-losses"></p>
-      <p id="guesses-left"></p>
-      <p id="total-guesses"></p>
-      <p id="player-guesses"></p>
+      <p>Wins: <span id="player-wins"></p>
+      <p> Losses: <span id="player-losses"></p>
+      <p> Total Guesses: <span id="total-guesses"></p>
+      <p> Guesses Left: <span id="guesses-left"></p>
+      <p> Letters Guessed: <span id="letters-guessed"></p>
     </div>
 
     <script type="text/javascript">
@@ -53,102 +53,117 @@
       //Create variables to hold number of wins,losses, guesses, & guesses left
       var wins = 0;
       var losses = 0;
-      var guessesLeft = 9;
+      var guessesLeft = 10;
       var guessedLetters = [];
-      var computerGuess = [];
-
+     
       //Create variables to hold references to the places in the html where we want to hold things
-      var directionsText = document.getElementById("directions");
-      var playerGuess = document.getElementById("player-guesses");
-      var playerWins = document.getElementById("player-wins");
-      var playerLosses = document.getElementById("player-losses");
-      var guessesLeft = document.getElementById("guesses-left");
-      var guessedSoFar = document.getElementById("total-guesses");
+      // var directionsText = document.getElementById("directions");
+      // var playerGuess = document.getElementById("player-guesses");
+      // var playerWins = document.getElementById("player-wins");
+      // var playerLosses = document.getElementById("player-losses");
+      // var guessesLeft = document.getElementById("guesses-left");
+      // var guessedSoFar = document.getElementById("total-guesses");
 
-      for (var i = 0; i < alphabet.length; i++) {}
+      //use Math.random method to generate a random letter
+      var computerGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
 
-      //Computer picks a letter first
-      window.onload = function() {
-        var compGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
-        computerGuess.push(compGuess);
-        console.log(computerGuess);
-      };
-      // This function runs when a key is pressed by player
+      console.log(computerGuess);
+
+      //function to capture the players keyboard input and make it lowercase
       document.onkeyup = function(event) {
-        var playerGuess = event.key;
-        // guessedSoFar.push(playerGuess);
-        console.log(playerGuess[0]);
+        var keyPress = event.key.toLowerCase();
+
+        addLetter(keyPress);
+      };
+
+      //function to catch repeat letters and/or add players guess to guessedLetters
+      function addLetter(playersKeypress) {
+        var repeatGuess = guessedLetters.some(function(item) {
+          return item === playersKeypress;
+        });
+
+        if (repeatGuess) {
+          alert(playersKeypress + " already guessed. Try again!");
+        } else {
+          guessedLetters.push(playersKeypress);
+          console.log(guessedLetters);
+
+          showGuessedLetters();
+
+          guessMatch(playersKeypress);
+        }
+      }
+
+      //function to show the letters guessed in the browser
+      function showGuessedLetters() {
+        var tempStr =
+          //guessedSoFar.push(playerGuess);
 
         if (playerGuess === computerGuess[0] && guessesLeft > 0) {
+          playerWins = true;
           wins++;
-          guessesLeft = 9;
           guessedLetters.length = 0;
           computerGuess.length = 0;
-          var compGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
-          compGuess.push(compGuess);
+          alert("WINNER! WINNER! WINNER!" + playerGuess);
+          console.log("Guesses Left " + guessesLeft);
+          reset();
+          //var compGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
+          //compGuess.push(compGuess);
           console.log(computerGuess[0]);
         } else if (playerGuess !== computerGuess[0] && guessesLeft > 0) {
           guessesLeft = guessesLeft - 1;
         } else {
           losses++;
-          guesseLeft = 9;
-          guessedLetters.length = 0;
-          computerGuess.length = 0;
           var compGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
           computerGuess.push(compGuess);
           console.log(computerGuess[0]);
         }
+        //function to show player's letters guessed in the browser by calling the html id
         function updateGuessedSoFar() {
-          document.querySelector("#player-guesses").innerHTML =
-            "Your guesses so far: " + guessedSoFar.join(", ");
+          var tempStr = lettersGuessed.join(", ");
+          document.getElementById("players-guesses").innerHTML = tempStr;
         }
 
-        var reset = function() {
-          totalGuesses = 15;
-          guessesLeft = 15;
-          guessedSoFar = [];
-          updateTurnsLeft();
-          updateGuessedSoFar();
-        };
-        if (playerGuess === computerGuess) {
-          playerWins = true;
-          wins++;
-          alert("WINNER! WINNER! WINNER!" + playerGuess);
-          // if playerWins = (var i = 0; i + ??? )
-        } else if (playerGuess != computerGuess) {
-          alert("Sorry, that is incorrect.");
-          losses++;
-          console.log(playerWins);
+        function guessMatch(character) {
+          console.log(character);
+          console.log(computerGuess);
+
+          if (character === computerGuess) {
+            alert("WINNER, WINNER, WINNER!");
+            wins = wins + 1;
+            showWins();
+          } else if (guessesLeft === 0) {
+            alert("Sorry, you lose. Let's try again.");
+            resetVariables();
+          } else {
+            guessesLeft = guessesLeft - 1;
+            showGuessesRemaining();
+          }
         }
-      };
-      //add wins and losses to get guessedSoFar
-      //console.log(computerGuess[0]);
-      function updateTurnsLeft() {
-        document.querySelector("#guesses-left");
 
-        //create a total to determine guesses left
+        //function to show wins
+        function showWins() {
+          document.getElementById("player-wins").innerHTML = wins;
+        }
 
-        //Hide directions
-        directionsText.textContent = "";
+        //function to show guesses remaining by calling the html id
+        function showGuessesRemaining() {
+          document.getElementById("guesses-left").innerHTML = guessesLeft;
+        }
 
-        //Display the player and computer guesses, wins, and losses.
-        playerLosses.textContent = "Losses: " + losses;
-        playerWins.textContent = "Wins: " + wins;
-        guessedSoFar.textContent = "Your Guesses So Far: " + guessed;
-        guessesLeft.textContent = "Guesses Left: " + turnsLeft;
-        playerGuess.textContent = "You Guessed: " + playerGuess;
+        //Resetting at the end of the game, reset lettersGuessed to be an empty array, guessesLeft returns to 10, restart the game
 
-        // Creating variables to hold the number of
+        function resetVariables() {
+          lettersGuessed = [];
+          guessesLeft = 10;
+        }
 
-        // Function to run when the user presses a key.
+        function startGame() {
+          showGuessesRemaining();
+          showWins();
+        }
 
-        //      Essentially, the app randomly picks a letter, and the user has to guess which letter the app chose. Put the following text on your page:
-        // Wins: (# of times the user has guessed the letter correctly)
-        // Losses: (# of times the user has failed to guess the letter correctly after exhausting all guesses)
-        // Guesses Left: (# of guesses left. This will update)
-        // Your Guesses So Far: (the specific letters that the user typed. Display these until the user either wins or loses.)
-        // When the player wins, increase the Wins counter and start the game over again (without refreshing the page).
-        // When the player loses, increase the Losses counter and restart the game without a page refresh (just like when the user wins).
+        startGame();
       }
     </script>
   </body>
