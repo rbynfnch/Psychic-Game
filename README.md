@@ -8,4 +8,4 @@ Check out my FOOD Word Guess Game. Have fun!
 
 https://rbynfnch.github.io/Psychic-Game/
 
-<img src="https://rbynfnch.github.io/Psychic-Game/assets/images/Capture.PNG" alt="Smiley face" height="42" width="42">
+<img src="https://rbynfnch.github.io/Psychic-Game/assets/images/Capture.PNG" alt="Smiley face" height="654" width="1006">
