@@ -1,0 +1,119 @@
+body {
+    background: rgb(50,50,50);
+  
+  }
+  .img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+    width: 125px; 
+  }
+h1 {
+  font-family: 'Fresca', sans-serif;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-weight: 300;
+}
+
+h2 {
+    font-family: 'Titan One', cursive;
+    font-size: 2.5em;
+    color: #fff;
+    text-shadow:
+    -3px -3px 0 #EF8E34,
+    3px -3px 0 #EF8E34,
+    -3px 3px 0 #EF8E34,
+    3px 3px 0 #EF8E34;
+    text-align: center;
+    margin-top: -65px;
+    margin-right: -200px;
+    transform: rotate(-10deg);
+}
+
+h3{
+    font-family: 'Fresca', sans-serif;
+    font-size: 2.5em;
+    text-align: center;
+    color: #248490;
+}
+
+h4 {
+    font-family: 'Fresca', sans-serif;
+    font-size: 1.5em;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+h5{
+    font-family: 'Fresca', sans-serif;
+    font-size: 2em;
+    text-align: center;
+    color: #80a7ac;
+}
+p {
+    font-family: 'Gaegu', cursive;
+    font-size: 1.75em;
+    text-align: center;
+    margin-top: -55px;
+} 
+
+#guessedLetters {
+    color: #80a7ac;
+    margin-bottom: -40px;
+}
+#numWins {
+    color: rgb(7, 247, 27);
+    padding-left: 5px;
+    padding-right: 25px;
+}
+#numLosses {
+    color: rgb(248, 7, 19);
+    padding-left: 5px;
+    padding-right: 25px;
+}
+#numGuesses {
+    color: rgb(248, 176, 7);
+    padding-left: 25px;
+    padding-right: 5px;
+}
+
+#instructions {
+    color: #80a7ac;
+    margin-top: 0;
+    margin-bottom: -40px;
+    font-size: 1.25em;
+}
+
+#answerWord {
+    letter-spacing: .25em;
+    margin-top: 0;
+    margin-bottom: 5;
+    color: rgb(248, 176, 7);
+}
+
+main {
+    width: 50%;
+    margin: 0 auto;
+}
+.wins {
+    margin: 5px, 0px;
+}
+
+.container {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.904);
+    padding-bottom: 50px;
+}
+
+.middle {
+    flex: 1;
+    order: 2;
+    padding: 20px;
+    border-left: 1px solid #777777;
+    border-right: 1px solid #777777;
+}
+
